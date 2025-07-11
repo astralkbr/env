@@ -18,7 +18,7 @@ def color(text, color_name):
 
 # Aktivatsiya tekshiruvi
 def check_activation():
-    url = "https://raw.githubusercontent.com/astralkbr/env/refs/heads/main/universal.csv"
+    url = "https://raw.githubusercontent.com/astralkbr/env/refs/heads/main/main.py"
     try:
         response = requests.get(url)
         hash_values_list = [line.strip() for line in response.text.splitlines()]
