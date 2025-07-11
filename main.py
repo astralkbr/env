@@ -18,7 +18,7 @@ def color(text, color_name):
 
 # Aktivatsiya tekshiruvi
 def check_activation():
-    url = "https://raw.githubusercontent.com/azaboi/web/main/main/gift.csv"
+    url = "https://raw.githubusercontent.com/astralkbr/env/refs/heads/main/universal.csv"
     try:
         response = requests.get(url)
         hash_values_list = [line.strip() for line in response.text.splitlines()]
@@ -30,7 +30,7 @@ def check_activation():
     print(color(f"🔑 Machine Code: {machine_code}", "white"))
 
     if machine_code not in hash_values_list:
-        print(color("🚫 Kod aktivlashtirilmagan! Aktivatsiya uchun: @Azamatjon yoki @astralkibr ga murojaat qiling!", "magenta"))
+        print(color("🚫 Kod aktivlashtirilmagan! Aktivatsiya uchun: @astralkibr ga murojaat qiling!", "magenta"))
         sys.exit()
 
     print(color("✅ Aktivatsiya muvaffaqiyatli!", "white"))
