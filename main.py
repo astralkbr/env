@@ -1,50 +1,30 @@
-import requests
-import sys
+# Userbot emas! Faqat print orqali ishlaydi. Telegramga ulanmaydi.
+import time
+import random
 
-# Foydali funksiyalar (Helpers o‘rniga oddiy funksiya)
-def get_machine_code():
-    # Test uchun random kod — bu yerga haqiqiy kodni yozing
-    import uuid
-    return str(uuid.uuid4())  # Test uchun random UUID
+# Soxta kanal nomlari va usernamelar
+kanallar = [
+    ("UzNews", "uznewsdaily"),
+    ("TexnoUstoz", "texnoustoz"),
+    ("Kitoblar Olami", "kitob_olami"),
+    ("Astral Dev", "astraldev"),
+    ("Crypto Savdo", "cryptosavdo"),
+    ("Foydali Postlar", "foydalipostlar"),
+    ("AI Yangiliklari", "aiuznews"),
+    ("Dasturlash Darsi", "codeuzbot"),
+]
 
-# Rangli chop etish uchun funksiya
-def color(text, color_name):
-    colors = {
-        "white": "\033[97m",
-        "magenta": "\033[95m",
-        "reset": "\033[0m"
-    }
-    return f"{colors.get(color_name, '')}{text}{colors['reset']}"
+print("🔍 Xabar monitoring boshlanmoqda...\n")
 
-# Aktivatsiya tekshiruvi
-def check_activation():
-    url = "https://raw.githubusercontent.com/astralkbr/env/refs/heads/main/main.py"
-    try:
-        response = requests.get(url)
-        hash_values_list = [line.strip() for line in response.text.splitlines()]
-    except Exception as e:
-        print(f"❌ Aktivatsiya tekshiruvida xatolik: {e}")
-        sys.exit()
+# Har safar tasodifiy kanalni tanlab, xabar yuborgandek qiladi
+for i in range(10):  # Nechta xabar chiqarilishini shu yerda sozlashingiz mumkin
+    kanal_nomi, username = random.choice(kanallar)
+    link = f"https://t.me/{username}"
 
-    machine_code = get_machine_code()
-    print(color(f"🔑 Machine Code: {machine_code}", "white"))
+    print(f"📢 Kanal xabar yubordi: {kanal_nomi}")
+    print(f"🔗 Kanal linki: {link}")
+    print("📨 Yuborilyapti...\n")
 
-    if machine_code not in hash_values_list:
-        print(color("🚫 Kod aktivlashtirilmagan! Aktivatsiya uchun: @astralkibr ga murojaat qiling!", "magenta"))
-        sys.exit()
+    time.sleep(1.5)  # Realistik ko‘rinishi uchun kutish
 
-    print(color("✅ Aktivatsiya muvaffaqiyatli!", "white"))
-
-# Salomlashish funksiyasi
-def greet_user(name):
-    """Foydalanuvchini salomlash funksiyasi"""
-    print(f"Hello, {name}! Welcome to the Python world.")
-
-# Dastur asosiy qismi
-def main():
-    check_activation()
-    user_name = input("Ismingizni kiriting: ")
-    greet_user(user_name)
-
-if __name__ == "__main__":
-    main()
+print("✅ Monitoring tugadi.")
